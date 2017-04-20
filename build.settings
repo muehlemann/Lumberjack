@@ -1,0 +1,38 @@
+-- Supported values for orientation:
+-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+
+settings = {
+	
+	orientation = {
+		default = "portrait",
+		supported = { "portrait", }
+	},
+	
+	iphone = {
+		plist = 
+        {
+            CFBundleDisplayName = "LumberJack",
+            CFBundleName = "LumberJack",
+            CFBundleIdentifier = "lumberlogger",
+            CFBundleIconFile = "gfx/icons/Icon.png",
+            CFBundleIconFiles =
+            {
+                "gfx/icons/Icon.png", 
+                "gfx/icons/Icon@2x.png", 
+                "gfx/icons/Icon-60.png",
+                "gfx/icons/Icon-60@2x.png",
+                "gfx/icons/Icon-72.png", 
+                "gfx/icons/Icon-72@2x.png",
+                "gfx/icons/Icon-76.png",
+                "gfx/icons/Icon-76@2x.png", 
+                "gfx/icons/Icon-Small.png", 
+                "gfx/icons/Icon-Small@2x.png",
+                "gfx/icons/Icon-Small-40.png",
+                "gfx/icons/Icon-Small-40@2x.png",
+                "gfx/icons/Icon-Small-50.png", 
+                "gfx/icons/Icon-Small-50@2x.png", 
+            },
+        }
+	},
+	
+}
