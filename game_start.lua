@@ -53,7 +53,7 @@ function credits()
 		system.openURL("http://www.icons8.com")
 	end
 
-	local txt_dev = display.newText({ text = "• DEVELOPER •\nMatt Muehlemann\n\n• ARTIST •\nJon Decker\n\n • ICONS •\n Icons8.com", fontSize = 40, font = font_body, align = 'center', x = halfW, y = 400, width = screenW - 10, height = 400 })
+	local txt_dev = display.newText({ text = "• DEVELOPER •\nPlndrm\n\n• ARTIST •\nJon Decker\n\n • ICONS •\n Icons8.com", fontSize = 40, font = font_body, align = 'center', x = halfW, y = 400, width = screenW - 10, height = 400 })
 	txt_dev:setFillColor(0, 0, 0)
 	scr_game_credits:insert(txt_dev)
 
@@ -150,7 +150,7 @@ end
 --
 function load()
 
-	local txt_title = display.newText({ text = 'LumberJack', fontSize = 108, font = font_title, align = 'center', x = halfW, y = 500, width = screenW, height = 140 })
+	local txt_title = display.newText({ text = 'LumberJump', fontSize = 108, font = font_title, align = 'center', x = halfW, y = 500, width = screenW, height = 140 })
 	txt_title:setFillColor(0, 0, 0)
 	scr_game_start:insert(txt_title)
 

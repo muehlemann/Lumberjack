@@ -11,8 +11,8 @@ settings = {
 	iphone = {
 		plist = 
         {
-            CFBundleDisplayName = "LumberJack",
-            CFBundleName = "LumberJack",
+            CFBundleDisplayName = "LumberJump",
+            CFBundleName = "LumberJump",
             CFBundleIdentifier = "lumberlogger",
             CFBundleIconFile = "gfx/icons/Icon.png",
             CFBundleIconFiles =

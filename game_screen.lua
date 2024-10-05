@@ -183,7 +183,6 @@ function touch_handler(event)
 		transition.to(tmp_platform,   {time = 26000, rotation = tmp_platform.rotation + 7200 })
 		transition.to(tmp_platform_h, {time = 26000, rotation = tmp_platform.rotation + 7200 })
 
-
 	elseif (tmp_platform ~= nil) then
 
 		if (tmp_platform.isFocus) then
@@ -218,6 +217,9 @@ function touch_handler(event)
 				if (n < 7) then
 					make_paltform(tmp_platform)
 					tmp_platform = nil
+					layer_background.fx("brick")
+				elseif n == 7 then
+					layer_background.fx("woosh")
 				end
 
 			end
@@ -252,7 +254,7 @@ function frame_handler(event)
 		for i = #blocks, 1, -1 do
 			if (blocks[i].y > screenH + blocks[i].height) then
 				blocks[i]:removeSelf()
-				table.remove( blocks, i )
+				table.remove(blocks, i)
 			end
 		end
 
@@ -261,6 +263,10 @@ function frame_handler(event)
 		player.score    = player.score + 1
 
 		-- Check if the background should be changed
+		if (player.score % 80 == 0) then
+			make_cloud()
+		end
+
 		if (player.score % 100 == 0) then
 			make_saw()
 		end
@@ -283,6 +289,7 @@ function frame_handler(event)
 		if (blocks[i].tag == 'block') then
 			n = n + 1
 		end
+
 		if (blocks[i].tag == 'saw') then
 			blocks[i].rotation = blocks[i].rotation - blocks[i]._rotation
 		end
@@ -312,15 +319,52 @@ function make_paltform(obj)
 
 end
 
--- make_rock
+-- make_cloud
+-- factory function for a cloud
+--
+function make_cloud()
+
+	-- Element: Cloud
+	local radius = math.random(40, 90)
+	local type = math.random(1, 3)
+	local time = math.random(12, 24)
+	
+	local cloudX = 0
+	local cloudY = math.random(-100, screenH / 3)
+	local cloudW = radius * 2
+
+	local modifier = 1
+	if (math.random() < 0.5) then
+		cloudX = -cloudW
+		modifier = 1
+	else 
+		cloudX = screenW + cloudW
+		modifier = -1
+	end
+
+	local cloud = display.newImageRect('gfx/cloud' .. type .. '.png', cloudW, radius)
+	cloud.x = cloudX
+	cloud.y = cloudY
+	cloud.tag = 'cloud'
+	table.insert(blocks, cloud)
+	scr_game_screen:insert(1, cloud)
+
+	print("MMDB: x" .. cloud.x .. ", y:" .. cloud.y .. ", w:" .. cloud.width .. ", h:" .. cloud.height .. "")
+
+	-- Animate direction
+	transition.to(cloud, {time = time * 1000, x = cloud.x + ((screenW + (cloudW * 2)) * modifier) })
+
+end
+
+-- make_saw
 -- factory function for a saw
 --
 function make_saw()
 
-	var = math.random(0, 100)
+	local var = math.random(0, 100)
 	if ((player.score >= 50) and (var > 20)) then
-		-- Element: Rock
-		radius = math.random(50, 80)
+		-- Element: Saw
+		local radius = math.random(50, 80)
 		local saw = display.newImageRect('gfx/saw.png', radius * 2, radius * 2)
 		saw.y = -100
 		saw.x = math.random(20, screenW - 40)
@@ -328,7 +372,7 @@ function make_saw()
 		saw._rotation = math.random(5, 20)
 		physics.addBody(saw, 'static', { density = 1.0, friction = 0.0, bounce = 0.0, radius = radius * 0.7})
 		table.insert(blocks, saw)
-		scr_game_screen:insert(1, saw)
+		scr_game_screen:insert(2, saw)
 	end
 	
 end
@@ -371,7 +415,7 @@ function reset_game()
 	end
 
 	-- remove explosion
-	display.remove( explosion )
+	display.remove(explosion)
 	explosion:removeEventListener("sprite", sprite_handler)
 	explosion = nil
 

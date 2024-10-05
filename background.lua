@@ -11,7 +11,9 @@ local s_track  = audio.loadStream("gfx/sounds/soundtrack.mp3")
 local s_tick   = audio.loadSound('gfx/sounds/tick.mp3')
 local s_saw    = audio.loadSound('gfx/sounds/saw.mp3')
 local s_bounce = audio.loadSound('gfx/sounds/bounce.mp3')
+local s_brick  = audio.loadSound('gfx/sounds/brick.mp3')
 local s_below  = audio.loadSound('gfx/sounds/game_over.mp3')
+local s_woosh  = audio.loadSound('gfx/sounds/woosh.mp3')
 
 -- load
 -- first fuction to run
@@ -52,7 +54,7 @@ local function play_fx(sound)
 	if (settings.fx == true) then
 
 		-- stop all in use channels
-		for i = 2, 5 do
+		for i = 2, 7 do
 			if audio.isChannelPlaying(i) then
 				audio.stop(i)
 			end
@@ -65,8 +67,12 @@ local function play_fx(sound)
 			audio.play(s_saw, {channel = 3, loops = 0})
 		elseif (sound == 'bounce') then
 			audio.play(s_bounce, {channel = 4, loops = 0})
+		elseif (sound == 'brick') then
+			audio.play(s_brick, {channel = 5, loops = 0})
+		elseif (sound == 'woosh') then
+			audio.play(s_woosh, {channel = 6, loops = 0})
 		elseif (sound == 'below') then
-			audio.play(s_below, {channel = 5, loops = 0})
+			audio.play(s_below, {channel = 7, loops = 0})
 		end
 	end
 
